@@ -15,7 +15,7 @@
 
 ## # 개발 환경
 - `JAVA 8`
-- `JDK 1.8.0_341`
+- `JDK 1.8.0_341` 
 - **Framework** : Spring framework 3.9.12 / Mybatis 3.4.6
 - **IDE** : Eclipse IDE v.2019-09 / STS 3.9.17
 - **Server** : Apache Tomcat9
