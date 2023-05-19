@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.image.mapper.ImageMapper">
+	<!-- 	// list -->
+	<!-- 	public List<ImageVO> list(PageObject pageObject)throws Exception; -->
+	<select id="list" resultType="com.project.image.vo.ImageVO">
+		select no, title, id, writeDate, fileName
+		from(
+			select rownum rnum, no, title, id, writeDate, fileName
+			from(
+				select no, title, id, writeDate, fileName
+				from image
+				<include refid="search" />
+				order by no desc			
+			)	
+		) where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 	// 전체 데이터 개수 -->
+	<!-- 	public long getTotalRow(PageObject pageObject)throws Exception; -->
+	<select id="getTotalRow" resultType="long">
+		select count(*) 
+		from image
+		<include refid="search" />
+	</select>
+
+	<!-- 검색 -->
+	<sql id="search">
+		<!-- 검색을 해야 할 때 (word가 비어있지 않을 때) where문을 붙인다. -->		
+		<if test="word != null and word != ''">
+			<!-- or, like -->
+			where 1=0
+				<if test="key.indexOf('t'.toString()) >= 0">
+					or title like ${"'%" + word + "%'"}
+				</if>
+				<if test="key.indexOf('c'.toString()) >= 0">
+					or content like ${"'%" + word + "%'"}
+				</if>
+				<if test="key.indexOf('f'.toString()) >= 0">
+					or fileName like ${"'%" + word + "%'"}
+				</if>
+		</if>
+	</sql>
+		
+	<!-- 	// view -->
+	<!-- 	public ImageVO view(long no)throws Exception; -->
+	<select id="view" resultType="com.project.image.vo.ImageVO">
+		select no, title, content, id, writeDate, fileName
+		from image
+		where no = #{no}
+	</select>
+		
+	<!-- 	// imageChange 처리 -->
+	<!-- 	public int imageChange(ImageVO vo)throws Exception; -->
+	<update id="imageChange">
+		update image set fileName = #{fileName}
+		where no = #{no}
+	</update>
+		
+	<!-- 	// write 처리 -->
+	<!-- 	public int write(ImageVO vo)throws Exception; -->
+	<insert id="write">
+		insert into image(no, title, content, id, fileName) 
+		values(image_seq.nextval, #{title}, #{content}, #{id}, #{fileName})
+	</insert>
+		
+	<!-- 	// update 처리 -->
+	<!-- 	public int update(ImageVO vo)throws Exception; -->
+	<update id="update">
+		update image set title = #{title}, content = #{content} 
+		where no = #{no}
+	</update>
+		
+	<!-- 	// delete 처리 -->
+	<!-- 	public int delete(long no)throws Exception; -->
+	<delete id="delete">
+		delete from image 
+		where no = #{no}
+	</delete>
+</mapper>

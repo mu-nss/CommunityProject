@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.board.mapper.BoardMapper">
+
+	<select id="list" resultType="com.project.board.vo.BoardVO">
+		<![CDATA[
+			select no, title, writer, writeDate, hit
+			from(	
+				select /*+ INDEX_DESC(board SYS_C007554) */
+					rownum rno, no, title, writer, writeDate, hit
+				from board
+				where
+		]]>
+				<include refid="search" />
+		<![CDATA[
+					rownum <= #{endRow}
+			) 
+			where rno > #{startRow} - 1
+		]]>
+	</select>
+	
+	<select id="getTotalRow" resultType="Long">
+		select count(no) from board
+		where		
+			<include refid="search" />
+			no > 0
+	</select>
+	
+	<!-- 검색 쿼리 -->
+	<sql id="search">
+		<if test="word != null and !word.equals(''.toString())">
+			<trim prefix= "( 1=0 " suffix=") and">
+				<if test="key.contains('t'.toString())">
+					or title like '%' || #{word} || '%'
+				</if>
+				<if test="key.contains('c'.toString())">
+					or content like '%' || #{word} || '%'
+				</if>
+				<if test="key.contains('w'.toString())">
+					or writer like '%' || #{word} || '%'
+				</if>
+			</trim>
+		</if>
+	</sql>
+
+	<select id="view" resultType="com.project.board.vo.BoardVO">
+		select no, title, content, writer, writeDate, hit
+		from board
+		where no = #{no}
+	</select>
+	
+	<update id="increase">
+		update board 
+		set hit = hit + 1
+		where no = #{no} 
+	</update>
+	
+	<insert id="write">
+		insert into board(no, title, content, writer)
+		values(board_seq.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<update id="update">
+		update board
+		set title = #{title}, content = #{content}, writer = #{writer}
+		where no = #{no}
+	</update>
+	
+	<delete id="delete">
+		delete from board
+		where no = #{no}
+	</delete>
+</mapper>

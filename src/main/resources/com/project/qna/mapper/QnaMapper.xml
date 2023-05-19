@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.qna.mapper.QnaMapper">
+
+	<select id="list" resultType="com.project.qna.vo.QnaVO">
+		select no, title, id, writeDate, hit, levNo
+		from (
+			select rownum rnum, no, title, id, writeDate, hit, levNo
+			from(
+				select no, title, id, writeDate, hit, levNo
+				from qna
+				order by refNo desc, ordNo
+			)
+		) where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getTotalRow" resultType="long">
+		select count(*) from qna
+	</select>
+	
+	<insert id="question">
+		insert into qna(no, title, content, id, refNo, ordNo, levNo, parentNo)
+		values(qna_seq.nextval, #{title}, #{content}, #{id}, qna_seq.nextval, 1, 0, null)
+	</insert>
+	
+	<select id="view" resultType="com.project.qna.vo.QnaVO">
+		select no, title, content, id, writeDate, hit, refNo, ordNo, levNo
+		from qna
+		where no = #{no}
+	</select>
+	
+	<update id="increase">
+		update qna set hit = hit + 1
+		where no = #{no}
+	</update>
+	
+	<insert id="answer">
+		insert into qna(no, title, content, id, refNo, ordNo, levNo, parentNo)
+		values(qna_seq.nextval, #{title}, #{content}, #{id}, #{refNo}, #{ordNo}, #{levNo}, #{parentNo})
+	</insert>
+	
+	<update id="increaseOrdNo">
+		update qna set ordNo = ordNo + 1 
+		where refNo = #{refNo} and ordNo >= #{ordNo}
+	</update>
+	
+	<update id="update">
+		update qna set title = #{title}, content = #{content}
+		where no = #{no}
+	</update>
+	
+	<delete id="delete">
+		delete from qna 
+		where no = #{no}
+	</delete>
+
+</mapper>

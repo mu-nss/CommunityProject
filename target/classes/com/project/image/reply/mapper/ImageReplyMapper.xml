@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.image.reply.mapper.ImageReplyMapper">
+
+	<!-- 댓글 리스트 -->
+	<select id="list" resultType="com.project.image.reply.vo.ImageReplyVO">
+		<![CDATA[
+			select rno, no, reply, replyer, replyDate, updateDate
+			from(
+				select /*+ INDEX(image_reply idx_image_reply) */
+				rownum rnum, rno, no, reply, replyer, replyDate, updateDate
+				from image_reply
+				where no = #{no}
+				and rno > 0
+				and rownum <= #{pageObject.endRow}
+			)where rnum >= #{pageObject.startRow}
+		]]>
+	</select>
+
+	<!-- 해당 글번호 댓글의 전체 데이터 개수 가져오기 -->
+	<select id="getTotalRow" resultType="Long">
+		<![CDATA[
+			select count(rno)
+			from image_reply
+			where no = #{no}
+		]]>	
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="write">
+		insert into image_reply(rno, no, reply, replyer)
+		values(image_reply_seq.nextval, #{no}, #{reply}, #{replyer})
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="update">
+		update image_reply
+		set reply = #{reply}, replyer = #{replyer}, updateDate = sysdate
+		where rno = #{rno}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delete">
+		delete from image_reply where rno = #{rno}
+	</delete>
+
+</mapper>
