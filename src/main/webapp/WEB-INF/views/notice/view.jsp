@@ -66,10 +66,10 @@
 
 				<div align="right">
 					<c:if test="${!empty login }">
-						<button class="btn btn-primary" type="button" id="updateBtn">Update</button>
-						<button class="btn btn-primary" type="button" id="deleteBtn">Delete</button>
+						<button class="btn btn-xs btn-outline-primary" type="button" id="updateBtn">Modify</button>
+						<button class="btn btn-xs btn-outline-danger" type="button" id="deleteBtn">Delete</button>
 					</c:if>
-					<button class="btn btn-primary" type="button" id="listBtn">List</button>
+					<button class="btn btn-xs btn-outline-primary" type="button" id="listBtn">List</button>
 				</div>
 			</form>
 		</div>

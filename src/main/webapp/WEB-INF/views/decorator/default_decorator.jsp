@@ -313,8 +313,8 @@
                 </div>
                 <div class="modal-body">Do you want to logout?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/member/logout.do">Logout</a>
+                    <a class="btn btn-outline-primary" href="/member/logout.do">Logout</a>
+                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

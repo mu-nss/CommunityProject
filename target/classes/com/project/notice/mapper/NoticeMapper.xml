@@ -37,9 +37,6 @@
 				<if test="key.contains('c'.toString())">
 					or content like '%' || #{word} || '%'
 				</if>
-				<if test="key.contains('w'.toString())">
-					or writer like '%' || #{word} || '%'
-				</if>
 			</trim>
 		</if>
 	</sql>

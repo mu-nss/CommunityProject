@@ -5,8 +5,21 @@
 <%@ taglib prefix="pageNav" tagdir="/WEB-INF/tags"%>
 	<title>이미지 리스트</title>
 	
+	<style type="text/css">
+		.dataRow:hover {
+			cursor: pointer;
+		}
+		.card-body {
+			padding-top: 0;
+		}
+	</style>
+	
 	<script type="text/javascript">
 		$(function(){
+			$("#key").val("${(!emptypageObject.key)? 'ti':pageObject.key}");
+			$("#word").val("${pageObject.word}");
+			$("#perPageNum").val("${pageObject.perPageNum}");
+			
 			$(".dataRow").click(function(){
 				var no = $(this).find(".no").text();
 				location = "view.do?no=" + no 
@@ -15,10 +28,6 @@
 							+ "&key=${pageObject.key}"
 							+ "&word=${pageObject.word}"
 			});
-			// key 데이터 세팅
-			var key = "${pageObject.key}";
-			if(!key) key = "t";
-			$("#key").val(key);
 		})
 	</script>
 	
@@ -30,13 +39,33 @@
 			<!-- 테이블 제목 -->
 			<h6 class="font-weight-bold text-default float-left" style="margin: 5px 0 0">Image List Page</h6>
 			<c:if test="${!empty login }">
-				<a href="write.do" class="btn btn-sm btn-primary float-right">New Register</a>
+				<a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-sm btn-primary float-right">New Register</a>
 			</c:if>
 		</div>
 			
 		<div class="card-body">
 			<!-- 한 줄 시작 -->
 			<div class="row">
+				<div class="col-md-12">
+					<form action="list.do">
+						<input type="hidden" name="perPageNum" value="${pageObject.perPageNum }">
+					
+						<div class="input-group mt-3 mb-3">
+					    	<div class="input-group-prepend">
+					    		<select class="form-control" id="key" name="key">
+					        		<option value="ti">전체</option>
+					        		<option value="t">제목</option>
+					        		<option value="i">아이디</option>
+							  	</select>
+					      	</div>
+					     	<input type="text" class="form-control" placeholder="Search" id="word" name="word">
+					      	<div class="input-group-append">
+								<button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+					 	 	</div>
+					    </div>
+					</form>
+				</div>
+			
 				<c:forEach items="${list }" var="vo" varStatus="vs">
 				<!-- 이미지 데이터 한개 표시 시작 -->
 				<div class="col-md-3 dataRow">

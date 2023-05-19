@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="list" resultType="com.project.member.vo.MemberVO">
-<!-- 		<![CDATA[ -->
+		<![CDATA[
 		select id, name, birth, gender, tel, email, status, gradeNo, gradeName
 		from(
 			select rownum rnum, id, name, birth, gender, tel, email, status, gradeNo, gradeName
@@ -22,17 +22,19 @@
 				select m.id, m.name, m.birth, m.gender, m.tel, m.email, m.status, m.gradeNo, g.gradeName
 				from member m, grade g
 				where 1 = 1 
+		]]>
 				<include refid="search" />
+		<![CDATA[
 				and m.gradeNo = g.gradeNo
 				order by id asc
 			)
 		) 
 		where rnum between #{startRow} and #{endRow}
-<!-- 		]]> -->
+		]]> 
 	</select>
 	
 	<select id="getTotalRow" resultType="Long">
-		select count(*) from member
+		select count(id) from member
 		where 1 = 1
 		<include refid="search" />
 	</select>

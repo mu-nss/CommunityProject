@@ -41,9 +41,9 @@
 		     			</div>
 	     			 </div>
 	     			 <div class="modal-footer">
-	     			 	<button class="btn btn-warning" id="modalUpdateBtn">Update</button>
-	     			 	<button class="btn btn-danger" id="modalDeleteBtn">Delete</button>
-	     			 	<button class="btn btn-primary" id="modalWriteBtn">Register</button>
+	     			 	<button class="btn btn-xs btn-outline-primary" id="modalWriteBtn">Register</button>
+	     			 	<button class="btn btn-xs btn-outline-primary" id="modalUpdateBtn">Update</button>
+	     			 	<button class="btn btn-xs btn-outline-danger" id="modalDeleteBtn">Delete</button>
 	     			 	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 	     			 </div>
 				</div>

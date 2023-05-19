@@ -10,6 +10,7 @@
 <script type="text/javascript" src="/js/replyEvent.js"></script>
 
 	<title>이미지 보기</title>
+	
 	<style type="text/css">
 		#imageChangeDiv{
 			display: none; /* 맨 처음에 안 보임 */
@@ -21,14 +22,36 @@
 	
 	<script type="text/javascript">
 		$(function(){
+			// 이미지 변경 버튼 이벤트
 			$("#imageChangeDivShowBtn").click(function(){
 				$("#imageChangeDiv").show();
 			});
-			$("#cancelBtn").click(function(){ // 취소버튼 클릭 시 숨기기
+			
+			// 이미지 변경 취소 버튼 클릭 시 숨기기
+			$("#cancelBtn").click(function(){ 
 				$("#imageChangeDiv").hide();
 			});
-			$("#deleteBtn").click(function(){
-				return confirm("정말 삭제하시겠습니까?");
+			
+			// 리스트 버튼 클릭 이벤트
+			$("#listBtn").on("click", function(){
+				var no = $(this).find(".no").text();
+				location = "list.do?page=${param.page}"
+							+ "&perPageNum=${param.perPageNum}"
+							+ "&key=${param.key}"
+							+ "&word=${param.word}";
+			});
+			// 수정 버튼 클릭 이벤트
+			$("#updateBtn").on("click",function(){
+				location = "update.do?no=${vo.no}"
+							+ "&page=${param.page}"
+							+ "&perPageNum=${param.perPageNum}"
+							+ "&key=${param.key}"
+							+ "&word=${param.word}";
+			});
+			// 삭제 버튼 클릭 이벤트
+			$("#deleteBtn").on("click",function(){
+				if(confirm("정말 삭제하시겠습니까?"))
+					location = "delete.do?no=${vo.no}&perPageNum=${param.perPageNum}";
 			});
 		});
 	</script>
@@ -65,8 +88,8 @@
 									<input class="form-control" type="file" id="imageFile" name="imageFile" required="required">
 								</div>
 								<div align="right">
-									<button class="btn btn btn-light">변경</button>
-									<button class="btn btn btn-light" type="button" id="cancelBtn">취소</button>
+									<button class="btn btn-xs btn-outline-primary">Modify</button>
+									<button class="btn btn-xs btn-outline-danger" type="button" id="cancelBtn">Cancel</button>
 								</div>
 							</form>
 						</div>
@@ -81,12 +104,9 @@
 					<strong>수정 유의 사항!</strong> 정보만 수정할 수 있습니다. 이미지 파일을 이미지 아래 변경 버튼을 사용하세요.
 				</div>
 				<div align="right">
-					<button data-oper="modify" class="btn btn-xs btn-primary"
-						onclick="location = 'update.do?no=${vo.no}&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">Update</button>
-					<button data-oper="delete" class="btn btn-xs btn-danger"
-						onclick="location = 'delete.do?no=${vo.no}&deleteName=${vo.fileName }&perPageNum=${param.perPageNum}'">Delete</button>
-					<button data-oper="list" class="btn btn-xs btn-primary"
-						onclick="location = 'list.do?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">List</button>
+					<button data-oper="update" id="updateBtn" class="btn btn-xs btn-outline-primary">Modify</button>
+					<button data-oper="delete" id="deleteBtn" class="btn btn-xs btn-outline-danger">Delete</button>
+					<button data-oper="list" id="listBtn" class="btn btn-xs btn-outline-primary">List</button>
 				</div>
 			</div>
 		</div>

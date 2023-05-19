@@ -3,6 +3,14 @@
 
 	<title>질문답변 수정</title>
 	
+	<script type="text/javascript">
+		$(function(){
+			$("#cancelBtn").click(function(){
+				history.back();
+			});
+		});
+	</script>
+	
 	<!-- 페이지 제목 -->
 	<h1 class="h2 mb-2 text-gray-800"><strong>QnA</strong></h1>
 	<div class="card shadow mb-4">
@@ -15,9 +23,6 @@
 			<form method="post">
 				<input name="page" value="${param.page }" type="hidden">
 				<input name="perPageNum" value="${param.perPageNum }" type="hidden">
-	<%-- 			<input name="no" value="${vo.no }" type="hidden"> --%>
-	<%-- 			<input name="key" value="${param.key }" type="hidden"> --%>
-	<%-- 			<input name="word" value="${param.word }" type="hidden"> --%>
 	
 				<div class="form-group">
 					<label>번호</label>
@@ -31,9 +36,11 @@
 					<label>내용</label>
 					<textarea name="content" class="form-control" rows="5">${vo.content }</textarea>
 				</div>
-				<button class="btn btn-default">수정</button>
-				<button class="btn btn-default" type="reset">새로입력</button>
-				<button id="cancelBtn" class="btn btn-default" type="button">취소</button>
+				<div align="right">
+					<button class="btn btn-xs btn-outline-primary">Modify</button>
+					<button class="btn btn-xs btn-outline-secondary" type="reset">Reset</button>
+					<button class="btn btn-xs btn-outline-danger" type="button" id="cancelBtn" >Cancel</button>
+				</div>
 			</form>
 		</div>	
 		<!-- /.card-body -->

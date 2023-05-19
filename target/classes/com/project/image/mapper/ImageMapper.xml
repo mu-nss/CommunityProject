@@ -5,22 +5,27 @@
 	<!-- 	// list -->
 	<!-- 	public List<ImageVO> list(PageObject pageObject)throws Exception; -->
 	<select id="list" resultType="com.project.image.vo.ImageVO">
-		select no, title, id, writeDate, fileName
-		from(
-			select rownum rnum, no, title, id, writeDate, fileName
+		<![CDATA[
+			select no, title, id, writeDate, fileName
 			from(
-				select no, title, id, writeDate, fileName
-				from image
+				select /*+ INDEX_DESC(image SYS_SYS_C007479) */ 
+					rownum rnum, no, title, id, writeDate, fileName
+				from(
+					select no, title, id, writeDate, fileName
+					from image
+		]]>
 				<include refid="search" />
+		<![CDATA[
 				order by no desc			
-			)	
-		) where rnum between #{startRow} and #{endRow}
+				)	
+			) where rnum between #{startRow} and #{endRow}
+		]]>
 	</select>
 	
 	<!-- 	// 전체 데이터 개수 -->
 	<!-- 	public long getTotalRow(PageObject pageObject)throws Exception; -->
 	<select id="getTotalRow" resultType="long">
-		select count(*) 
+		select count(no) 
 		from image
 		<include refid="search" />
 	</select>
@@ -34,11 +39,8 @@
 				<if test="key.indexOf('t'.toString()) >= 0">
 					or title like ${"'%" + word + "%'"}
 				</if>
-				<if test="key.indexOf('c'.toString()) >= 0">
-					or content like ${"'%" + word + "%'"}
-				</if>
-				<if test="key.indexOf('f'.toString()) >= 0">
-					or fileName like ${"'%" + word + "%'"}
+				<if test="key.indexOf('i'.toString()) >= 0">
+					or id like ${"'%" + word + "%'"}
 				</if>
 		</if>
 	</sql>

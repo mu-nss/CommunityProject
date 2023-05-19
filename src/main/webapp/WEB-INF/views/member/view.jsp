@@ -147,11 +147,12 @@
 				<div align="right">
 					<!-- 개인 버튼 메뉴 -->
 					<c:if test="${empty param.id}">
-						<button class="btn btn-primary" type="button" id="updateBtn">Update</button>
-						<button class="btn btn-primary" type="button" id="changePwBtn">Change Pw</button>
-						<button class="btn btn-primary" type="button" id="deleteBtn">Delete</button>
+						<button class="btn btn-xs btn-outline-primary" type="button" id="updateBtn">Modify</button>
+						<button class="btn btn-xs btn-outline-danger" type="button" id="deleteBtn">Delete</button>
 					</c:if>
-					<button class="btn btn-primary" type="button" id="listBtn">List</button>
+					<c:if test="${!empty param.id && login.gradeNo == 9}">
+						<button class="btn btn-xs btn-outline-primary" type="button" id="listBtn">List</button>
+					</c:if>
 				</div>
 		</div>
 		<!-- /.card-body -->

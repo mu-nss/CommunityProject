@@ -45,9 +45,9 @@
 						<textarea class="form-control" name="content" rows="3">${vo.content }</textarea>
 					</div>
 					<div align="right">
-						<button data-oper="modify" class="btn btn-primary">modify</button>
-						<button data-oper="remove" class="btn btn-danger">delete</button>
-						<button data-oper="list" class="btn btn-secondary" type="button" onclick="location = 'list.do'">list</button>
+						<button data-oper="modify" class="btn btn-xs btn-outline-primary">Modify</button>
+						<button data-oper="remove" class="btn btn-xs btn-outline-danger">Delete</button>
+						<button data-oper="list" class="btn btn-xs btn-outline-primary" type="button" onclick="location = 'list.do'">List</button>
 					</div>
 				</form>
 			</div>

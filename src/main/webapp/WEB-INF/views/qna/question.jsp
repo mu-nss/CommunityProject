@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<title>질문답변 질문하기</title>
-<script type="text/javascript">
-	$(function(){
-		$("#cancelBtn").click(function(){
-			history.back();
+	<title>질문답변 질문하기</title>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#cancelBtn").click(function(){
+				history.back();
+			});
 		});
-	});
-</script>
+	</script>
 
 	<!-- 페이지 제목 -->
 	<h1 class="h2 mb-2 text-gray-800"><strong>QnA</strong></h1>
@@ -32,9 +33,9 @@
 					<textarea name="content" class="form-control" rows="5"></textarea>
 				</div>
 				<div align="right">
-					<button class="btn btn-xs btn-primary">등록</button>
-					<button class="btn btn-xs btn-primary" data-oper="reset" type="reset">새로고침</button>
-					<button class="btn btn-primary" type="reset" onclick="location = 'list.do'" id="cancelBtn">취소</button>
+					<button class="btn btn-xs btn-outline-primary">Register</button>
+					<button class="btn btn-xs btn-outline-secondary" data-oper="reset" type="reset">Reset</button>
+					<button class="btn btn-xs btn-outline-danger" type="reset" onclick="location = 'list.do'" id="cancelBtn">Cancel</button>
 				</div>
 
 			</form>

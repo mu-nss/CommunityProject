@@ -61,10 +61,7 @@
 					        		<option value="tcw">전체</option>
 					        		<option value="t">제목</option>
 					        		<option value="c">내용</option>
-					        		<option value="w">작성자</option>
 					        		<option value="tc">제목/내용</option>
-					        		<option value="tw">제목/작성자</option>
-					        		<option value="cw">내용/작성자</option>
 							  	</select>
 					      	</div>
 					     	<input type="text" class="form-control" placeholder="Search" id="word" name="word">

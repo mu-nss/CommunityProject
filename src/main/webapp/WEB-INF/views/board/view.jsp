@@ -17,7 +17,7 @@
 							+ "&word=${param.word}";
 			});
 			// 수정 버튼 클릭 이벤트
-			$("#updateBtn").on("click",function(){
+			$("#updateBtn").on("click", function(){
 				location = "update.do?no=${vo.no}"
 							+ "&page=${param.page}"
 							+ "&perPageNum=${param.perPageNum}"
@@ -74,10 +74,10 @@
 
 				<div align="right">
 					<c:if test="${!empty login }">
-						<button class="btn btn-primary" type="button" id="updateBtn">Update</button>
-						<button class="btn btn-primary" type="button" id="deleteBtn">Delete</button>
+						<button class="btn btn-xs btn-outline-primary" type="button" id="updateBtn">Modify</button>
+						<button class="btn btn-xs btn-outline-danger" type="button" id="deleteBtn">Delete</button>
 					</c:if>
-					<button class="btn btn-primary" type="button" id="listBtn">List</button>
+					<button class="btn btn-xs btn-outline-primary" type="button" id="listBtn">List</button>
 				</div>
 			</form>
 		</div>

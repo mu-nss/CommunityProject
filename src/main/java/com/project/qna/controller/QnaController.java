@@ -36,13 +36,13 @@ public class QnaController {
 	
 	// 질문답변 질문하기 폼 - g
 	@GetMapping("/question.do")
-	public String question() throws Exception{
+	public String questionForm() throws Exception{
 		return "qna/question";
 	}
 
 	// 질문답변 질문하기 처리 - p
 	@PostMapping("/question.do")
-	public String questionForm(QnaVO vo, HttpSession session, int perPageNum) throws Exception {
+	public String question(QnaVO vo, HttpSession session, long perPageNum) throws Exception {
 		vo.setId(((LoginVO)session.getAttribute("login")).getId());
 		
 		qnaServiceImpl.question(vo); // DB 처리
@@ -65,7 +65,6 @@ public class QnaController {
 	// 답변하기 폼 - g
 	@GetMapping("/answer.do")
 	public String answerForm(long no, Model model) throws Exception {
-	
 		model.addAttribute("vo", qnaServiceImpl.view(no, 0));
 		
 		return "qna/answer";

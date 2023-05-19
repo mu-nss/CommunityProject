@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 
 	<title>질문 답변하기</title>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#cancelBtn").click(function(){
+				history.back();
+			});
+		});
+	</script>
 
 	<!-- 페이지 제목 -->
 	<h1 class="h2 mb-2 text-gray-800"><strong>QnA</strong></h1>
@@ -18,8 +26,6 @@
 				<input name="no" value="${vo.no }" type="hidden">
 				<input name="page" value="${param.page }" type="hidden">
 				<input name="perPageNum" value="${param.perPageNum }" type="hidden">
-	<%-- 			<input name="key" value="${param.key }" type="hidden"> --%>
-	<%-- 			<input name="word" value="${param.word }" type="hidden"> --%>
 				<input name="refNo" value="${vo.refNo }" type="hidden">
 				<input name="ordNo" value="${vo.ordNo }" type="hidden">
 				<input name="levNo" value="${vo.levNo }" type="hidden">
@@ -38,9 +44,9 @@ ${vo.content }
 				</div>
 				
 				<div align="right">
-					<button class="btn btn-xs btn-primary">등록</button>
-					<button class="btn btn-xs btn-primary" data-oper="reset" type="reset">새로고침</button>
-					<button class="btn btn-primary" type="reset" onclick="location = 'list.do'" id="cancelBtn">취소</button>
+					<button class="btn btn-xs btn-outline-primary">Register</button>
+					<button class="btn btn-xs btn-outline-secondary" data-oper="reset" type="reset">Reset</button>
+					<button class="btn btn-xs btn-outline-danger" type="reset" id="cancelBtn">Cancel</button>
 				</div>
 			</form>
 		</div>	

@@ -39,9 +39,9 @@
 				</div>
 
 				<div align="right">
-					<button class="btn btn-primary">Register</button>
-					<button class="btn btn-primary" type="reset">Reset</button>
-					<button class="btn btn-primary" type="button" id="cancelBtn">Cancel</button>
+					<button class="btn btn-xs btn-outline-primary">Register</button>
+					<button class="btn btn-xs btn-outline-secondary" type="reset">Reset</button>
+					<button class="btn btn-xs btn-outline-danger" type="button" id="cancelBtn">Cancel</button>
 				</div>
 			</form>
 		</div>

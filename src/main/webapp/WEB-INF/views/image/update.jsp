@@ -16,8 +16,6 @@
 			<form method="post">
 				<input type="hidden" name="page" value="${param.page }">
 				<input type="hidden" name="perPageNum" value="${param.perPageNum }">
-	<%-- 			<input type="hidden" name="key" value="${param.key }"> --%>
-	<%-- 			<input type="hidden" name="word" value="${param.word }">			 --%>
 				
 				<div class="form-group">
 					<label for="no">번호</label>
@@ -32,9 +30,9 @@
 					<textarea name="content" id="content" class="form-control" rows="5" >${vo.content }</textarea>
 				</div>
 				<div align="right">
-					<button data-oper="modify" class="btn btn-xs btn-primary">수정</button>
-					<button data-oper="reset" class="btn btn-xs btn-primary" type="reset">새로고침</button>
-					<button class="btn btn-primary" type="reset" onclick="location = 'list.do'" id="cancelBtn">취소</button>
+					<button data-oper="modify" class="btn btn-xs btn-outline-primary">Modify</button>
+					<button data-oper="reset" class="btn btn-xs btn-outline-secondary" type="reset">Reset</button>
+					<button data-oper="cancel" class="btn btn-xs btn-outline-danger" onclick="location = 'list.do'" id="cancelBtn">Cancel</button>
 				</div>
 			</form>
 		</div>

@@ -28,7 +28,9 @@
 				var id = $(this).find(".id").text();
 				location = "view.do?id=" + id
 							+ "&page=${pageObject.page}"
-							+ "&perPageNum=${pageObject.perPageNum}";
+							+ "&perPageNum=${pageObject.perPageNum}"
+							+ "&key=${pageObject.key}"
+							+ "&word=${pageObject.word}";
 			});
 		});
 	</script>
@@ -47,7 +49,7 @@
 			<!-- 검색 -->
 			<div class="row">
 				<div class="col-md-12">
-					<form action="list.do" method="post">
+					<form action="list.do">
 						<input type="hidden" name="perPageNum" value="${pageObject.perPageNum }">
 					
 						<div class="input-group mt-3 mb-3">

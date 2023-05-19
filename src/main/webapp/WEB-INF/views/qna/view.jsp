@@ -7,8 +7,34 @@
 	
 	<script type="text/javascript">
 		$(function(){
-			$("#deleteBtn").click(function(){
-				return confirm("정말 삭제하시겠습니까?");
+			// 리스트 버튼 클릭 이벤트
+			$("#listBtn").on("click", function(){
+				var no = $(this).find(".no").text();
+				location = "list.do?page=${param.page}"
+							+ "&perPageNum=${param.perPageNum}"
+							+ "&key=${param.key}"
+							+ "&word=${param.word}";
+			});
+			// 답변하기 버튼 클릭 이벤트
+			$("#answerBtn").on("click", function(){
+				location = "answer.do?no=${vo.no}"
+							+ "&page=${param.page}"
+							+ "&perPageNum=${param.perPageNum}"
+							+ "&key=${param.key}"
+							+ "&word=${param.word}";
+			});
+			// 수정 버튼 클릭 이벤트
+			$("#updateBtn").on("click", function(){
+				location = "update.do?no=${vo.no}"
+							+ "&page=${param.page}"
+							+ "&perPageNum=${param.perPageNum}"
+							+ "&key=${param.key}"
+							+ "&word=${param.word}";
+			});
+			// 삭제 버튼 클릭 이벤트
+			$("#deleteBtn").on("click",function(){
+				if(confirm("정말 삭제하시겠습니까?"))
+					location = "delete.do?no=${vo.no}&perPageNum=${param.perPageNum}";
 			});
 		});
 	</script>
@@ -58,18 +84,14 @@
 			<div align="right">
 				<c:if test="${!empty login }">
 					<c:if test="${vo.id != login.id }">
-						<button data-oper="answer" class="btn btn-xs btn-primary"
-								onclick="location = 'answer.do?no=${vo.no }&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">answer</button>
+						<button data-oper="answer" id="answerBtn" class="btn btn-xs btn-outline-primary">Answer</button>
 					</c:if>
 					<c:if test="${vo.id == login.id }">
-						<button data-oper="update" class="btn btn-xs btn-primary"
-								onclick="location = 'update.do?no=${vo.no }&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">modify</button>
-						<button data-oper="delete" class="btn btn-xs btn-primary"
-								onclick="location = 'delete.do?no=${vo.no }&perPageNum=${param.perPageNum}" id="deleteBtn" class="btn btn-default'">delete</button>
+						<button data-oper="update" id="updateBtn" class="btn btn-xs btn-outline-primary">Modify</button>
+						<button data-oper="delete" id="deleteBtn" class="btn btn-xs btn-outline-danger">Delete</button>
 					</c:if>
 				</c:if>
-				<button data-oper="list" class="btn btn-xs btn-primary"
-						onclick="location = 'list.do?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">list</button>
+				<button data-oper="list" id="listBtn" class="btn btn-xs btn-outline-primary">List</button>
 			</div>
 		</div>	
 		<!-- /.card-body -->
