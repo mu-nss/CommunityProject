@@ -134,3 +134,11 @@ public String view(String id, Model model, HttpSession session) throws Exception
     - 동일한 이름, 다른 패키지 경우
     - yaml 파일 오타
     - DataSource Configuration
+	
+* 이미지와 질문답변에서 등록(write)을 하면 500번 오류 - numberformatexception: for input string: ""이 발생
+    - 리스트(list)에서 등록 버튼의 href에 perPageNum을 넘겨주지 않아서 발생
+```
+<c:if test="${!empty login }">
+	<a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-sm btn-primary float-right">New Register</a>
+</c:if>
+```
