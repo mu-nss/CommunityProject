@@ -22,6 +22,9 @@
 - **Datebase** : Oracle 11g
 - **FrontEnd** : Bootstrap 4
 
+## # 유스케이스
+![커뮤니티프로젝트_유스케이스](https://github.com/mun-sojeong/communityProject/assets/82130275/869491ee-a91c-4e54-9591-4efc7f0240f6)
+
 ## # DB ERD
 ![커뮤니티프로젝트_ERD](https://github.com/mun-sojeong/communityProject/assets/82130275/d20126a4-788e-4e60-9ec7-bd3056ef2191)
 
