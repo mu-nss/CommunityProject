@@ -33,9 +33,9 @@
 				</div>
 				
 				<div align="right">
-					<button class="btn btn-xs btn-primary">등록</button>
-					<button data-oper="reset" class="btn btn-xs btn-primary" type="reset">새로고침</button>
-					<button class="btn btn-primary" type="reset" onclick="location = 'list.do'" id="cancelBtn">취소</button>
+					<button class="btn btn-xs btn-outline-primary">Register</button>
+					<button class="btn btn-xs btn-outline-secondary" type="reset">Reset</button>
+					<button class="btn btn-xs btn-outline-danger" type="reset" onclick="location = 'list.do'" id="cancelBtn">Cancel</button>
 				</div>
 			</form>
 		</div>
